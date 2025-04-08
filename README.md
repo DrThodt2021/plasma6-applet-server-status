@@ -1,9 +1,11 @@
 # Server Status Plasmoid
 
 ## About
-Applet for KDE Plasma 5 showing a status of the servers defined by user.
+This ist a WIP for KDE Plasma 6 showing a status of the servers defined by user.
 
-Written by Maciej Gierej - http://makg.eu
+
+Original written by Maciej Gierej - http://makg.eu
+Rework by Dr.Thodt
 
 ## Installation
 ```
