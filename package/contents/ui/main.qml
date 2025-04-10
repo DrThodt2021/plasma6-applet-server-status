@@ -1,13 +1,17 @@
 /***************************************************************************
- *   Copyright (C) 2025 by Dr.Thodt <drthodt2016@yandex.com>                             *
+ *   Copyright (C) 2017 by MakG <makg@makg.eu>                             *
+ *   Modified for Plasma 6 by Dr.Thodt 2025                                *
  ***************************************************************************/
 
-import QtQuick 2.1
+
+import QtQuick 2.15
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.4
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import QtQuick.Controls 2.15
+import org.kde.plasma.plasma5support as Plasma5Support
+import org.kde.plasma.core as PlasmaCore
+import org.kde.kprocess 1.0 as KProcess
+import org.kde.plasma.plasmoid
+import org.kde.plasma.components 6.0 as PlasmaComponents  // oder 5.0
 
 Item {
 	id: root
@@ -21,7 +25,7 @@ Item {
 	height: 300
 	
 // 	Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
-	Plasmoid.toolTipTextFormat: Text.RichText
+	Plasmoid.toolTipTextFormat: Qt.RichText
 	
 	ServersModel {
 		id: serversModel
@@ -42,7 +46,7 @@ Item {
 	}
 	
 	Plasmoid.compactRepresentation: Item {
-		PlasmaCore.IconItem {
+		PlasmaComponents.Icon {
 			anchors.fill: parent
 			source: statusSummary == 1 ? plasmoid.configuration.iconOnline : plasmoid.configuration.iconOffline
 		}
@@ -69,7 +73,7 @@ Item {
 			delegate: Row {
 				height: nameText.paintedHeight * 1.5
 				
-				PlasmaCore.IconItem {
+				PlasmaComponents.Icon {
 					id: icon
 					
 					width: parent.height
@@ -148,7 +152,7 @@ Item {
 		}
 	}
 	
-	PlasmaCore.DataSource {
+	Plasma5Support.DataSource {
 		id: executableDS
 		engine: "executable"
 		connectedSources: []
@@ -169,7 +173,7 @@ Item {
 		signal exited(string sourceName, string stdout)
 	}
 	
-	PlasmaCore.DataSource {
+	Plasma5Support.DataSource {
 		id: notifyExecDS
 		engine: "executable"
 		connectedSources: []
